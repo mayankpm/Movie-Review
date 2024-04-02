@@ -1,19 +1,26 @@
-server: 
-    port : 9192
+server:
+  port: 8080
 
-spring :
-    datasource:
-        url: jdbc:mysql://localhost:3306/ooad
-        username: root
-        password: root
-        driver-class-name: com.mysql.cj.jdbc.Driver
-    jpa:
-        show-sql: true
-        hibernate:
-            ddl-auto: update
-            format_sql: true
-    servlet:
-        multipart:
-            max-file-size: 10MB
-            max-request-size: 10MB 
-            file-size-threshold: 2KB
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/ooad
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+      database: ooad
+      database-platform: org.hibernate.dialect.MySQLDialect
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql: trace
