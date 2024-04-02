@@ -1,11 +1,11 @@
 package com.example.MovieRating.model;
-import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,11 +16,14 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "rating", nullable = false)
-    private int rating;
+
+    @Column(name = "release_year", nullable = false)
+    private int releaseYear;
+
+    @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
     @JsonManagedReference(value = "movie-rating")
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Rating> ratings;
 }
