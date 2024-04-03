@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rating")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RatingContoller {
 
     @Autowired
